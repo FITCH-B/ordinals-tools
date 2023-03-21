@@ -3,16 +3,12 @@ const cheerio = require('cheerio');
 const readline = require('readline-sync');
 const puppeteer = require('puppeteer');
 const fs = require('fs');
-//const desktopPath = require('path').join(require('os').homedir(), 'Desktop');
-//const path = require('path');
 
 let collectionName = readline.question("What collection do you want to look up? ")
 const words = collectionName.split(" ");
 const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
 const output = capitalizedWords.join(" ");
 console.log(`Searching collection: ${output} ...`)
-
-//const filePath = path.join(__dirname, `${collectionName}.txt`); // update the file name and path as needed
 
 setTimeout(()=> {
     console.log('TAKING SNAPSHOT...')
