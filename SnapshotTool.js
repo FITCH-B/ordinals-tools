@@ -1,3 +1,6 @@
+//AS OF 3/22 8:23am EST
+//Would not use until hiro has updated their site. Currently it displays the genesis address and not the current holder
+
 const axios = require('axios');
 const cheerio = require('cheerio');
 const readline = require('readline-sync');
