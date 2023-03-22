@@ -1,5 +1,6 @@
 //AS OF 3/22 8:23am EST
-//Would not use until hiro has updated their site. Currently it displays the genesis address and not the current holder
+//Would not use until hiro has updated their site. Currently it displays the genesis address and not the current holder.
+//This message will be deleted once they have updated.
 
 const axios = require('axios');
 const cheerio = require('cheerio');
