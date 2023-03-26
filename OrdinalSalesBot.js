@@ -27,10 +27,10 @@ async function getOW() {
         const collectionLink = collectionSplit.join("-");
         collectionLowercase = collectionLink.toLowerCase();
         console.log(timestamp);                
-        console.log(`Collection: ${collection}`);
+        console.log(collection);
         console.log(`${salePrice} BTC`);
         console.log(`Inscription #: ${idNumbers}`);
-        console.log(collectionName);
+        console.log(`Collection: ${collectionName}`);
         return {
             inscriptionLink,
             collection,
