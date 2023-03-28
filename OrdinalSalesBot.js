@@ -21,16 +21,15 @@ async function getOW() {
         const idMatches = inscription.match(/#(\d+)w*/g);
         const idNumbers = idMatches.map(match => match.replace("#", "").replace("Inscription", "")); 
         const salePrice = $('span.text-sm.regular:first').text();
-        const timestamp  = $('div.InscriptionActivityRow_listed__ATa2z.text-sm.regular:first').text()
         let collectionName = $('div.GradientText_root__mVkmV.InscriptionActivityRow_collectionName__4dNmQ.text-sm:first').text();
-        const collectionSplit = collectionName.split(" ");
-        const collectionLink = collectionSplit.join("-");
-        collectionLowercase = collectionLink.toLowerCase();
-        console.log(timestamp);                
-        console.log(collection);
-        console.log(`${salePrice} BTC`);
-        console.log(`Inscription #: ${idNumbers}`);
-        console.log(`Collection: ${collectionName}`);
+        const collectionNameLink = $('').attr("href")
+        collectionName = `[${collectionName}]${collectionNameLink})`
+        const url5 = `${collectionNameLink}`
+        const response2 = await axios.get(url5);
+        const $2 = cheerio.load(response2.data);
+        let variable = $2(`div.CollectionStat_value__wetim.text-sm.semibold:first`).text()
+        floorPrice = variable
+        
         return {
             inscriptionLink,
             collection,
@@ -40,28 +39,12 @@ async function getOW() {
             marketplace,
             collectionName,
             collectionLowercase,
+            floorPrice
         };           
     } catch (error) {
         console.log(error);
     }
 }
-
-async function getPrice() {
-    try {
-      await getOW();
-      const url5 = `https://ordinalswallet.com/collection/${collectionLowercase}`;
-      const response = await axios.get(url5);
-      const $ = cheerio.load(response.data);
-      let variable = $(`div.CollectionStat_value__wetim.text-sm.semibold:first`).text()
-      let floorPrice = variable;
-      console.log(`Floor price: ${floorPrice} BTC`) ;     
-      return floorPrice
-    } catch (error) {
-      console.log(error);
-    }    
-  }
-
-  getPrice(collectionLowercase);
 
 /*async function sendLatestOWSale() {
     const { inscriptionLink, id, collection, salePrice, idNumbers, marketplace, collectionName } = await getOW();
