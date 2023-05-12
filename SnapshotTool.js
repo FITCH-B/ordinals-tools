@@ -1,7 +1,3 @@
-//AS OF 3/22 8:23am EST
-//Would not use until hiro has updated their site. Currently it displays the genesis address and not the current holder.
-//This message will be deleted once they have updated.
-
 const axios = require('axios');
 const cheerio = require('cheerio');
 const readline = require('readline-sync');
@@ -22,11 +18,10 @@ const collectionSplit = collectionName.split(" ")
 const collectionLink = collectionSplit.join("-")
 const collectionLowercase = collectionLink.toLowerCase()
 
-const url = `https://ordinalswallet.com/collection/${collectionLowercase}`
-
 const results = []
 
 async function getIds() {
+    const url = `https://ordinalswallet.com/collection/${collectionLowercase}`;
   try {  
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
@@ -45,8 +40,7 @@ async function getIds() {
             resolve();
               }
         }, scrollDelay);
-    });
-});
+    })});
 
     const html = await page.content();
     await browser.close();
@@ -56,10 +50,10 @@ async function getIds() {
     const idNumbers = idMatches.map(match => match.replace("#", "").replace("Inscription", ""))
     return idNumbers;
 
-    } catch(error) {
-        console.log(error)
+  } catch(error) {
+      console.log(error)
   }    
-}
+};
 
 async function getId(value) {
   try {
@@ -71,7 +65,7 @@ async function getId(value) {
   } catch(error) {
     console.log(error);
   }
-}
+};
 
 async function processValues() {
   const idNumbers = await getIds()
@@ -81,7 +75,7 @@ async function processValues() {
     results.push(result);
   }
   return results;
-} 
+}; 
 
 async function run() {
   try {
@@ -94,7 +88,7 @@ async function run() {
   } catch (error) {
     console.log(error)
   }
-}
+};
 
 run();
 
